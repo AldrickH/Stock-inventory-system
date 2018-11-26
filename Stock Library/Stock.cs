@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Stock_Library
 {
-    class Stock
+    public class Stock
     {
         public string transactionID { get; set; }
         public DateTime transactionDate { get; set; }

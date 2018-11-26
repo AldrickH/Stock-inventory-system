@@ -45,8 +45,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmItemDescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmItemDescription.Designer.cs">
+      <DependentUpon>FrmItemDescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmItemData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmItemData.Designer.cs">
+      <DependentUpon>FrmItemData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setting.cs" />
+    <EmbeddedResource Include="FrmItemDescription.resx">
+      <DependentUpon>FrmItemDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmItemData.resx">
+      <DependentUpon>FrmItemData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -68,6 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Stock Library\Stock Library.csproj">
+      <Project>{a677e687-f404-4d2f-9630-201fefb5da0b}</Project>
+      <Name>Stock Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

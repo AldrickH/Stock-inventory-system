@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Stock_Library
 {
-    class Item
+    public class Item
     {
         public string itemID { get; set; }
         public string itemName { get; set; }

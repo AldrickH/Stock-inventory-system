@@ -16,7 +16,7 @@ namespace Stock_inventory_system
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run();
+            Application.Run(new FrmMain());
         }
     }
 }
