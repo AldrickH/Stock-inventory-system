@@ -79,11 +79,18 @@ namespace Stock_inventory_system
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Delete this item ? \n Item Id : " + this.dgvItemData.SelectedRows[0].Cells[0].Value.ToString() + "\n Item Name : " + this.dgvItemData.SelectedRows[0].Cells[1].Value.ToString(), this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (this.dgvItemData.Rows.Count >= 1)
             {
-                dao.DeleteItem(this.dgvItemData.SelectedRows[0].Cells[0].Value.ToString());
+                if (MessageBox.Show("Delete this item ? \n Item Id : " + this.dgvItemData.SelectedRows[0].Cells[0].Value.ToString() + "\n Item Name : " + this.dgvItemData.SelectedRows[0].Cells[1].Value.ToString(), this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    dao.DeleteItem(this.dgvItemData.SelectedRows[0].Cells[0].Value.ToString());
 
-                ReloadDGVData();
+                    ReloadDGVData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Maaf, masih tidak ada data.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -147,26 +147,6 @@ namespace Stock_Library
             }
         }
 
-        public bool CheckItemByID(string _itemID)
-        {
-            bool result = false;
-            try
-            {
-                foreach (Item itm in listData)
-                {
-                    if (itm.itemID.Equals(_itemID))
-                    {
-                        return true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return result;
-        }
-
         public Item GetItemByID(string _itemID)
         {
             Item result = null;

@@ -17,15 +17,21 @@ namespace Stock_inventory_system
             InitializeComponent();
         }
 
+        private void btnIN_Click(object sender, EventArgs e)
+        {
+            FrmTransaction_IN frm = new FrmTransaction_IN();
+            frm.ShowDialog();
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void btnItem_Click(object sender, EventArgs e)
         {
             FrmItemData frm = new FrmItemData();
-            frm.Show();
+            frm.ShowDialog();
         }
     }
 }

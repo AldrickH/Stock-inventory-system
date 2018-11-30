@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.gBoxClose = new System.Windows.Forms.GroupBox();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripClose = new System.Windows.Forms.ToolStrip();
             this.btnClose = new System.Windows.Forms.ToolStripButton();
             this.gBoxReport = new System.Windows.Forms.GroupBox();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripReport = new System.Windows.Forms.ToolStrip();
             this.btnReport_IN = new System.Windows.Forms.ToolStripButton();
             this.btnReport_OUT = new System.Windows.Forms.ToolStripButton();
             this.btnReport_Stock = new System.Windows.Forms.ToolStripButton();
@@ -45,9 +45,9 @@
             this.btnIN = new System.Windows.Forms.ToolStripButton();
             this.btnOUT = new System.Windows.Forms.ToolStripButton();
             this.gBoxClose.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
+            this.toolStripClose.SuspendLayout();
             this.gBoxReport.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.toolStripReport.SuspendLayout();
             this.gBoxData.SuspendLayout();
             this.toolStripData.SuspendLayout();
             this.gBoxTransaction.SuspendLayout();
@@ -56,7 +56,7 @@
             // 
             // gBoxClose
             // 
-            this.gBoxClose.Controls.Add(this.toolStrip2);
+            this.gBoxClose.Controls.Add(this.toolStripClose);
             this.gBoxClose.Location = new System.Drawing.Point(496, 21);
             this.gBoxClose.Name = "gBoxClose";
             this.gBoxClose.Size = new System.Drawing.Size(91, 101);
@@ -64,18 +64,18 @@
             this.gBoxClose.TabStop = false;
             this.gBoxClose.Text = "Close";
             // 
-            // toolStrip2
+            // toolStripClose
             // 
-            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripClose.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripClose.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripClose.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripClose.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnClose});
-            this.toolStrip2.Location = new System.Drawing.Point(3, 33);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(53, 53);
-            this.toolStrip2.TabIndex = 0;
-            this.toolStrip2.Text = "toolStrip1";
+            this.toolStripClose.Location = new System.Drawing.Point(3, 33);
+            this.toolStripClose.Name = "toolStripClose";
+            this.toolStripClose.Size = new System.Drawing.Size(53, 53);
+            this.toolStripClose.TabIndex = 0;
+            this.toolStripClose.Text = "toolStrip1";
             // 
             // btnClose
             // 
@@ -86,10 +86,11 @@
             this.btnClose.Size = new System.Drawing.Size(50, 50);
             this.btnClose.Text = "Close";
             this.btnClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // gBoxReport
             // 
-            this.gBoxReport.Controls.Add(this.toolStrip1);
+            this.gBoxReport.Controls.Add(this.toolStripReport);
             this.gBoxReport.Location = new System.Drawing.Point(267, 21);
             this.gBoxReport.Name = "gBoxReport";
             this.gBoxReport.Size = new System.Drawing.Size(223, 101);
@@ -97,20 +98,20 @@
             this.gBoxReport.TabStop = false;
             this.gBoxReport.Text = "Report";
             // 
-            // toolStrip1
+            // toolStripReport
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripReport.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripReport.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnReport_IN,
             this.btnReport_OUT,
             this.btnReport_Stock});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 33);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(163, 53);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStripReport.Location = new System.Drawing.Point(3, 33);
+            this.toolStripReport.Name = "toolStripReport";
+            this.toolStripReport.Size = new System.Drawing.Size(163, 53);
+            this.toolStripReport.TabIndex = 0;
+            this.toolStripReport.Text = "toolStrip1";
             // 
             // btnReport_IN
             // 
@@ -198,7 +199,7 @@
             this.btnOUT});
             this.toolStripTransaction.Location = new System.Drawing.Point(3, 33);
             this.toolStripTransaction.Name = "toolStripTransaction";
-            this.toolStripTransaction.Size = new System.Drawing.Size(108, 53);
+            this.toolStripTransaction.Size = new System.Drawing.Size(147, 53);
             this.toolStripTransaction.TabIndex = 0;
             this.toolStripTransaction.Text = "toolStrip1";
             // 
@@ -212,6 +213,7 @@
             this.btnIN.Size = new System.Drawing.Size(50, 50);
             this.btnIN.Text = "IN";
             this.btnIN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnIN.Click += new System.EventHandler(this.btnIN_Click);
             // 
             // btnOUT
             // 
@@ -236,12 +238,12 @@
             this.Text = "FrmMain";
             this.gBoxClose.ResumeLayout(false);
             this.gBoxClose.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
+            this.toolStripClose.ResumeLayout(false);
+            this.toolStripClose.PerformLayout();
             this.gBoxReport.ResumeLayout(false);
             this.gBoxReport.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStripReport.ResumeLayout(false);
+            this.toolStripReport.PerformLayout();
             this.gBoxData.ResumeLayout(false);
             this.gBoxData.PerformLayout();
             this.toolStripData.ResumeLayout(false);
@@ -257,10 +259,10 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gBoxClose;
-        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStrip toolStripClose;
         private System.Windows.Forms.ToolStripButton btnClose;
         private System.Windows.Forms.GroupBox gBoxReport;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStripReport;
         private System.Windows.Forms.ToolStripButton btnReport_IN;
         private System.Windows.Forms.ToolStripButton btnReport_OUT;
         private System.Windows.Forms.ToolStripButton btnReport_Stock;

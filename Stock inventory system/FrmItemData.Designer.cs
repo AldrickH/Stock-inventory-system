@@ -49,13 +49,13 @@
             this.Item_ID,
             this.Item_Name,
             this.Quantity});
-            this.dgvItemData.Location = new System.Drawing.Point(12, 127);
+            this.dgvItemData.Location = new System.Drawing.Point(12, 145);
             this.dgvItemData.Name = "dgvItemData";
             this.dgvItemData.ReadOnly = true;
             this.dgvItemData.RowHeadersVisible = false;
             this.dgvItemData.RowTemplate.Height = 24;
             this.dgvItemData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItemData.Size = new System.Drawing.Size(776, 311);
+            this.dgvItemData.Size = new System.Drawing.Size(776, 293);
             this.dgvItemData.TabIndex = 0;
             this.dgvItemData.Resize += new System.EventHandler(this.dgvItemData_Resize);
             // 
