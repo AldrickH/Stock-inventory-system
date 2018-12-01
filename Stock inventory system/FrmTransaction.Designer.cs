@@ -1,6 +1,6 @@
 ﻿namespace Stock_inventory_system
 {
-    partial class FrmTransaction_IN
+    partial class FrmTransaction
     {
         /// <summary>
         /// Required designer variable.
@@ -67,8 +67,10 @@
             // 
             // txtBox_TransID
             // 
+            this.txtBox_TransID.Enabled = false;
             this.txtBox_TransID.Location = new System.Drawing.Point(186, 57);
             this.txtBox_TransID.Name = "txtBox_TransID";
+            this.txtBox_TransID.ReadOnly = true;
             this.txtBox_TransID.Size = new System.Drawing.Size(142, 22);
             this.txtBox_TransID.TabIndex = 1;
             // 
@@ -277,7 +279,7 @@
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
-            // FrmTransaction_IN
+            // FrmTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -299,8 +301,8 @@
             this.Controls.Add(this.lbl_TransDate);
             this.Controls.Add(this.txtBox_TransID);
             this.Controls.Add(this.lbl_TransID);
-            this.Name = "FrmTransaction_IN";
-            this.Text = "FrmTransaction_IN";
+            this.Name = "FrmTransaction";
+            this.Text = "FrmTransaction";
             this.Load += new System.EventHandler(this.FrmTransaction_IN_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransaction)).EndInit();

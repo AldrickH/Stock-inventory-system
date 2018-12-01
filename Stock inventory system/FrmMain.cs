@@ -19,7 +19,7 @@ namespace Stock_inventory_system
 
         private void btnIN_Click(object sender, EventArgs e)
         {
-            FrmTransaction_IN frm = new FrmTransaction_IN();
+            FrmTransaction frm = new FrmTransaction(false);
             frm.ShowDialog();
         }
 
@@ -31,6 +31,12 @@ namespace Stock_inventory_system
         private void btnItem_Click(object sender, EventArgs e)
         {
             FrmItemData frm = new FrmItemData();
+            frm.ShowDialog();
+        }
+
+        private void btnOUT_Click(object sender, EventArgs e)
+        {
+            FrmTransaction frm = new FrmTransaction(true);
             frm.ShowDialog();
         }
     }

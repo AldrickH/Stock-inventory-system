@@ -107,6 +107,14 @@ namespace Stock_Library
                         break;
                     }
                 }
+
+                using (SqlCommand cmd = new SqlCommand(@"delete Item where itemID = @itemID", _conn))
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@itemID", _itemID);
+                    cmd.ExecuteNonQuery();
+                }
+
             }
             catch (Exception ex)
             {
@@ -118,19 +126,31 @@ namespace Stock_Library
         {
             try
             {
-                RemoveAllItem();
-
                 _trans = _conn.BeginTransaction();
 
                 foreach (Item item in listData)
                 {
-                    using (SqlCommand cmd = new SqlCommand(@"insert into item values (@itemID, @itemName, @qty)", _conn, _trans))
+                    if (!CheckItemByID(item.itemID))
                     {
-                        cmd.Parameters.Clear();
-                        cmd.Parameters.AddWithValue("@itemID", item.itemID);
-                        cmd.Parameters.AddWithValue("@itemName", item.itemName);
-                        cmd.Parameters.AddWithValue("@qty", item.qty);
-                        cmd.ExecuteNonQuery();
+                        using (SqlCommand cmd = new SqlCommand(@"insert into item values (@itemID, @itemName, @qty)", _conn, _trans))
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue("@itemID", item.itemID);
+                            cmd.Parameters.AddWithValue("@itemName", item.itemName);
+                            cmd.Parameters.AddWithValue("@qty", item.qty);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        using (SqlCommand cmd = new SqlCommand(@"update item set itemName = @itemName, qty = @qty where itemID = @itemID", _conn, _trans))
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue("@itemID", item.itemID);
+                            cmd.Parameters.AddWithValue("@itemName", item.itemName);
+                            cmd.Parameters.AddWithValue("@qty", item.qty);
+                            cmd.ExecuteNonQuery();
+                        }
                     }
                 }
 
@@ -147,6 +167,53 @@ namespace Stock_Library
             }
         }
 
+        public void UpdateQuantity(string _itemID, int qtyAfter)
+        {
+            try
+            {
+                foreach (Item itm in listData)
+                {
+                    if (itm.itemID.Equals(_itemID))
+                    {
+                        itm.qty = qtyAfter;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool CheckItemByID(string _itemID)
+        {
+            bool result = false;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(@"select * from item where itemID = @itemID", _conn, _trans))
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@itemID", _itemID);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            if (reader.Read())
+                            {
+                                result = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
         public Item GetItemByID(string _itemID)
         {
             Item result = null;
@@ -157,6 +224,7 @@ namespace Stock_Library
                     if (itm.itemID.Equals(_itemID))
                     {
                         result = itm;
+                        break;
                     }
                 }
             }
@@ -180,21 +248,6 @@ namespace Stock_Library
                 throw ex;
             }
             return result;
-        }
-
-        private void RemoveAllItem()
-        {
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand(@"delete from item", _conn))
-                {
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
 
         public void Dispose()

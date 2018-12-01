@@ -11,17 +11,21 @@ using Stock_Library;
 
 namespace Stock_inventory_system
 {
-    public partial class FrmTransaction_IN : Form
+    public partial class FrmTransaction : Form
     {
         ItemDAO _itemDAO = null;
         TransactionDAO _transDAO = null;
 
-        public FrmTransaction_IN()
+        bool _itemOUT = false;
+
+        public FrmTransaction(bool itemOUT)
         {
             InitializeComponent();
             _itemDAO = new ItemDAO(Setting.GetConnectionString());
             _transDAO = new TransactionDAO(Setting.GetConnectionString());
             this.dgvItemData.AutoGenerateColumns = false;
+
+            _itemOUT = itemOUT;
         }
 
         private void FrmTransaction_IN_Load(object sender, EventArgs e)
@@ -32,6 +36,13 @@ namespace Stock_inventory_system
                 this.dgvItemData.DataSource = _itemDAO.GetAllItemData();
                 this.dgvItemData.Columns[0].DataPropertyName = nameof(Item.itemID);
                 this.dgvItemData.Columns[1].DataPropertyName = nameof(Item.itemName);
+
+                this.txtBox_TransID.Text = _transDAO.GetTransactionIDNext(_itemOUT);
+
+                if(_itemOUT)
+                {
+                    this.dgvTransaction.Columns[3].HeaderText = "OUT_Ammount";
+                }
             }
             catch (Exception ex)
             {
@@ -82,21 +93,27 @@ namespace Stock_inventory_system
         private void dgvTransaction_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             int rowNo = this.dgvTransaction.CurrentCell.RowIndex;
-            this.dgvTransaction.Rows[rowNo].Cells[4].Value = Convert.ToInt32(this.dgvTransaction.Rows[rowNo].Cells[2].Value) + Convert.ToInt32(this.dgvTransaction.Rows[rowNo].Cells[3].Value);
+            if (_itemOUT)
+            {
+                this.dgvTransaction.Rows[rowNo].Cells[4].Value = Convert.ToInt32(this.dgvTransaction.Rows[rowNo].Cells[2].Value) - Convert.ToInt32(this.dgvTransaction.Rows[rowNo].Cells[3].Value);
+            }
+            else
+            {
+                this.dgvTransaction.Rows[rowNo].Cells[4].Value = Convert.ToInt32(this.dgvTransaction.Rows[rowNo].Cells[2].Value) + Convert.ToInt32(this.dgvTransaction.Rows[rowNo].Cells[3].Value);
+            }
 
             this.lbl_QuantityTotal.Text = GetQuantityTotal().ToString() + " pcs";
         }
 
         private void dgvTransaction_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (this.dgvTransaction.Rows.Count > 0)
+            if (this.dgvTransaction.Rows.Count > 0 && _itemOUT)
             {
-                // 
-                //int rowNo = this.dgvTransaction.CurrentCell.RowIndex;
-                //if (Convert.ToInt32(this.dgvTransaction.Rows[rowNo].Cells[3].Value) > Convert.ToInt32(this.dgvTransaction.Rows[rowNo].Cells[2].Value))
-                //{
-                //    this.dgvTransaction.Rows[rowNo].Cells[3].Value = this.dgvTransaction.Rows[rowNo].Cells[2].Value;
-                //}
+                int rowNo = this.dgvTransaction.CurrentCell.RowIndex;
+                if (Convert.ToInt32(this.dgvTransaction.Rows[rowNo].Cells[3].Value) > Convert.ToInt32(this.dgvTransaction.Rows[rowNo].Cells[2].Value))
+                {
+                    this.dgvTransaction.Rows[rowNo].Cells[3].Value = this.dgvTransaction.Rows[rowNo].Cells[2].Value;
+                }
             }
         }
 
@@ -142,19 +159,41 @@ namespace Stock_inventory_system
                 List<Transaction> listTrans = new List<Transaction>();
                 foreach (DataGridViewRow row in this.dgvTransaction.Rows)
                 {
-                    listTrans.Add(new Transaction
+                    if (_itemOUT)
                     {
-                        transactionID = this.txtBox_TransID.Text,
-                        transactionNumber = transNumber,
-                        transactionDate = this.dtp_TransDate.Value.ToShortDateString(),
-                        itemData = _itemDAO.GetItemByID(row.Cells[0].Value.ToString()),
-                        qtyBefore = Convert.ToInt32(row.Cells[2].Value),
-                        qtyAfter = Convert.ToInt32(row.Cells[4].Value),
-                        qtyTrans_IN = Convert.ToInt32(row.Cells[3].Value),
-                        qtyTrans_OUT = 0
-                    });
+                        listTrans.Add(new Transaction
+                        {
+                            transactionID = this.txtBox_TransID.Text,
+                            transactionNumber = transNumber,
+                            transactionDate = this.dtp_TransDate.Value.ToShortDateString(),
+                            itemData = _itemDAO.GetItemByID(row.Cells[0].Value.ToString()),
+                            qtyBefore = Convert.ToInt32(row.Cells[2].Value),
+                            qtyAfter = Convert.ToInt32(row.Cells[4].Value),
+                            qtyTrans_IN = 0,
+                            qtyTrans_OUT = Convert.ToInt32(row.Cells[3].Value)
+                        });
+                    }
+                    else
+                    {
+                        listTrans.Add(new Transaction
+                        {
+                            transactionID = this.txtBox_TransID.Text,
+                            transactionNumber = transNumber,
+                            transactionDate = this.dtp_TransDate.Value.ToShortDateString(),
+                            itemData = _itemDAO.GetItemByID(row.Cells[0].Value.ToString()),
+                            qtyBefore = Convert.ToInt32(row.Cells[2].Value),
+                            qtyAfter = Convert.ToInt32(row.Cells[4].Value),
+                            qtyTrans_IN = Convert.ToInt32(row.Cells[3].Value),
+                            qtyTrans_OUT = 0
+                        });
+                    }
+                    transNumber = $"{(int.Parse(transNumber) + 1).ToString("00000")}";
+
+                    _itemDAO.UpdateQuantity(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[4].Value));
                 }
                 _transDAO.AddTransaction(listTrans);
+
+                _itemDAO.UpdateAllItem();
 
                 this.Close();
             }

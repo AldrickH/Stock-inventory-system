@@ -99,6 +99,60 @@ namespace Stock_Library
             return result;
         }
 
+        public string GetTransactionIDNext(bool itemOUT)
+        {
+            string result = "";
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(@"Select Top 1 transactionID from Trans where transactionID like @transactionID order by transactionID desc", _conn))
+                {
+                    cmd.Parameters.Clear();
+
+                    if (itemOUT) cmd.Parameters.AddWithValue("@transactionID", $"%{"OUT"}%");
+                    else cmd.Parameters.AddWithValue("@transactionID", $"%{"IN"}%");
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            if (reader.Read())
+                            {
+                                result = reader["transactionID"].ToString();
+                            }
+                        }
+                    }
+                }
+
+                if (itemOUT)
+                {
+                    if (result.Equals(""))
+                    {
+                        result = "OUT0001";
+                    }
+                    else
+                    {
+                        result = $"{"OUT" + (Convert.ToInt32(result.Substring(2, 4)) + 1).ToString("0000")}";
+                    }
+                }
+                else
+                {
+                    if (result.Equals(""))
+                    {
+                        result = "IN0001";
+                    }
+                    else
+                    {
+                        result = $"{"IN" + (Convert.ToInt32(result.Substring(2, 4)) + 1).ToString("0000")}";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
         public void Dispose()
         {
             if (_conn != null) _conn.Close();

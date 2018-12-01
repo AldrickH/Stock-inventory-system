@@ -224,6 +224,7 @@
             this.btnOUT.Size = new System.Drawing.Size(50, 50);
             this.btnOUT.Text = "OUT";
             this.btnOUT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnOUT.Click += new System.EventHandler(this.btnOUT_Click);
             // 
             // FrmMain
             // 

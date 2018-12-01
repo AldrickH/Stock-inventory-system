@@ -63,11 +63,11 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTransaction_IN.cs">
+    <Compile Include="FrmTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTransaction_IN.Designer.cs">
-      <DependentUpon>FrmTransaction_IN.cs</DependentUpon>
+    <Compile Include="FrmTransaction.Designer.cs">
+      <DependentUpon>FrmTransaction.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,8 +81,8 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTransaction_IN.resx">
-      <DependentUpon>FrmTransaction_IN.cs</DependentUpon>
+    <EmbeddedResource Include="FrmTransaction.resx">
+      <DependentUpon>FrmTransaction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
