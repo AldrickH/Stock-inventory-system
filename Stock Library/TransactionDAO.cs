@@ -131,7 +131,7 @@ namespace Stock_Library
                     }
                     else
                     {
-                        result = $"{"OUT" + (Convert.ToInt32(result.Substring(2, 4)) + 1).ToString("0000")}";
+                        result = $"{"OUT" + (Convert.ToInt32(result.Substring(3, 4)) + 1).ToString("0000")}";
                     }
                 }
                 else
