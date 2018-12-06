@@ -34,8 +34,8 @@ namespace Stock_Library
             {
                 if (this.listTrans == null)
                 {
-                    if (itemOUT) sqlString = @"select i.itemName, i.qty, s.suppName, s.suppAddress, t.* from Trans t join Item i on t.itemID = i.itemID join Supplier s on t.suppID = s.suppID where t.transactionID like @transactionID";
-                    else sqlString = "select i.itemName, i.qty, c.custName, c.custAddress, t.* from Trans t join Item i on t.itemID = i.itemID join Customer c on t.custID = c.custID where t.transactionID like @transactionID";
+                    if (itemOUT) sqlString = @"select i.itemName, i.qty, c.custName, c.custAddress, t.* from Trans t join Item i on t.itemID = i.itemID join Customer c on t.custID = c.custID where t.transactionID like @transactionID";
+                    else sqlString = @"select i.itemName, i.qty, s.suppName, s.suppAddress, t.* from Trans t join Item i on t.itemID = i.itemID join Supplier s on t.suppID = s.suppID where t.transactionID like @transactionID";
                     using (SqlCommand cmd = new SqlCommand(sqlString, _conn))
                     {
                         cmd.Parameters.Clear();
