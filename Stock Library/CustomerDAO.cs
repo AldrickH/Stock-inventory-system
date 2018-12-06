@@ -7,14 +7,14 @@ using System.Data.SqlClient;
 
 namespace Stock_Library
 {
-    public class ItemDAO : IDisposable
+    public class CustomerDAO : IDisposable
     {
         SqlConnection _conn = null;
         SqlTransaction _trans = null;
 
-        public List<Item> listData { get; set; }
+        public List<Customer> listData { get; set; }
 
-        public ItemDAO(string connectionString)
+        public CustomerDAO(string connectionString)
         {
             try
             {
@@ -27,26 +27,26 @@ namespace Stock_Library
             }
         }
 
-        public List<Item> GetAllItemData()
+        public List<Customer> GetAllCustomerData()
         {
             try
             {
                 if (this.listData == null)
                 {
-                    using (SqlCommand cmd = new SqlCommand(@"select * from item order by itemID", _conn))
+                    using (SqlCommand cmd = new SqlCommand(@"select * from Customer order by custID", _conn))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            listData = new List<Item>();
+                            listData = new List<Customer>();
                             if (reader.HasRows)
                             {
                                 while (reader.Read())
                                 {
-                                    listData.Add(new Item
+                                    listData.Add(new Customer
                                     {
-                                        itemID = reader["itemID"].ToString(),
-                                        itemName = reader["itemName"].ToString(),
-                                        qty = Convert.ToInt32(reader["qty"])
+                                        custID = reader["custID"].ToString(),
+                                        custName = reader["custName"].ToString(),
+                                        custAddress = reader["custAddress"].ToString()
                                     });
                                 }
                             }
@@ -61,11 +61,11 @@ namespace Stock_Library
             return listData;
         }
 
-        public void AddNewItem(Item _item)
+        public void AddNewCustomer(Customer _cust)
         {
             try
             {
-                listData.Add(_item);
+                listData.Add(_cust);
             }
             catch (Exception ex)
             {
@@ -73,17 +73,17 @@ namespace Stock_Library
             }
         }
 
-        public void EditItem(Item _item_NEW, Item _item_OLD)
+        public void EditCustomer(Customer _cust_NEW, Customer _cust_OLD)
         {
             try
             {
-                foreach (Item itm in listData)
+                foreach (Customer cust in listData)
                 {
-                    if (itm.itemID.Equals(_item_OLD.itemID))
+                    if (cust.custID.Equals(_cust_OLD.custID))
                     {
-                        itm.itemID = _item_NEW.itemID;
-                        itm.itemName = _item_NEW.itemName;
-                        itm.qty = _item_NEW.qty;
+                        cust.custID = _cust_NEW.custID;
+                        cust.custName = _cust_NEW.custName;
+                        cust.custAddress = _cust_NEW.custAddress;
                     }
                 }
             }
@@ -93,23 +93,23 @@ namespace Stock_Library
             }
         }
 
-        public void DeleteItem(string _itemID)
+        public void DeleteCustomer(string _custID)
         {
             try
             {
-                foreach (Item itm in listData)
+                foreach (Customer cust in listData)
                 {
-                    if (itm.itemID.Equals(_itemID))
+                    if (cust.custID.Equals(_custID))
                     {
-                        listData.Remove(itm);
+                        listData.Remove(cust);
                         break;
                     }
                 }
 
-                using (SqlCommand cmd = new SqlCommand(@"delete Item where itemID = @itemID", _conn))
+                using (SqlCommand cmd = new SqlCommand(@"delete Customer where custID = @custID", _conn))
                 {
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@itemID", _itemID);
+                    cmd.Parameters.AddWithValue("@custID", _custID);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -119,33 +119,33 @@ namespace Stock_Library
             }
         }
 
-        public void UpdateAllItem()
+        public void UpdateAllCustomer()
         {
             try
             {
                 _trans = _conn.BeginTransaction();
 
-                foreach (Item item in listData)
+                foreach (Customer cust in listData)
                 {
-                    if (!CheckItemByID(item.itemID))
+                    if (!CheckCustomerByID(cust.custID))
                     {
-                        using (SqlCommand cmd = new SqlCommand(@"insert into item values (@itemID, @itemName, @qty)", _conn, _trans))
+                        using (SqlCommand cmd = new SqlCommand(@"insert into Customer values (@custID, @custName, @custAddress)", _conn, _trans))
                         {
                             cmd.Parameters.Clear();
-                            cmd.Parameters.AddWithValue("@itemID", item.itemID);
-                            cmd.Parameters.AddWithValue("@itemName", item.itemName);
-                            cmd.Parameters.AddWithValue("@qty", item.qty);
+                            cmd.Parameters.AddWithValue("@custID", cust.custID);
+                            cmd.Parameters.AddWithValue("@custName", cust.custName);
+                            cmd.Parameters.AddWithValue("@custAddress", cust.custAddress);
                             cmd.ExecuteNonQuery();
                         }
                     }
                     else
                     {
-                        using (SqlCommand cmd = new SqlCommand(@"update item set itemName = @itemName, qty = @qty where itemID = @itemID", _conn, _trans))
+                        using (SqlCommand cmd = new SqlCommand(@"update Customer set custName = @custName, custAddress = @custAddress where custID = @custID", _conn, _trans))
                         {
                             cmd.Parameters.Clear();
-                            cmd.Parameters.AddWithValue("@itemID", item.itemID);
-                            cmd.Parameters.AddWithValue("@itemName", item.itemName);
-                            cmd.Parameters.AddWithValue("@qty", item.qty);
+                            cmd.Parameters.AddWithValue("@custID", cust.custID);
+                            cmd.Parameters.AddWithValue("@custName", cust.custName);
+                            cmd.Parameters.AddWithValue("@custAddress", cust.custAddress);
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -163,25 +163,7 @@ namespace Stock_Library
             }
         }
 
-        public void UpdateQuantity(string _itemID, int qtyAfter)
-        {
-            try
-            {
-                foreach (Item itm in listData)
-                {
-                    if (itm.itemID.Equals(_itemID))
-                    {
-                        itm.qty = qtyAfter;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public string GetItemIDNext()
+        public string GetCustomerIDNext()
         {
             string result = "";
             try
@@ -189,11 +171,11 @@ namespace Stock_Library
                 if (listData.Count > 0)
                 {
                     var res = this.listData.Last();
-                    result = "BRG" + (Convert.ToInt32(res.itemID.Substring(3, 4)) + 1).ToString("0000");
+                    result = "CST" + (Convert.ToInt32(res.custID.Substring(3, 4)) + 1).ToString("0000");
                 }
                 else
                 {
-                    result = "BRG0001";
+                    result = "CST0001";
                 }
             }
             catch (Exception ex)
@@ -203,15 +185,15 @@ namespace Stock_Library
             return result;
         }
 
-        public bool CheckItemByID(string _itemID)
+        public bool CheckCustomerByID(string _custID)
         {
             bool result = false;
             try
             {
-                using (SqlCommand cmd = new SqlCommand(@"select * from item where itemID = @itemID", _conn, _trans))
+                using (SqlCommand cmd = new SqlCommand(@"select * from Customer where custID = @custID", _conn, _trans))
                 {
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@itemID", _itemID);
+                    cmd.Parameters.AddWithValue("@custID", _custID);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -232,16 +214,16 @@ namespace Stock_Library
             return result;
         }
 
-        public Item GetItemByID(string _itemID)
+        public Customer GetCustomerByID(string _custID)
         {
-            Item result = null;
+            Customer result = null;
             try
             {
-                foreach (Item itm in listData)
+                foreach (Customer cust in listData)
                 {
-                    if (itm.itemID.Equals(_itemID))
+                    if (cust.custID.Equals(_custID))
                     {
-                        result = itm;
+                        result = cust;
                         break;
                     }
                 }

@@ -18,6 +18,7 @@ namespace Stock_inventory_system
         public FrmItemData()
         {
             InitializeComponent();
+
             dao = new ItemDAO(Setting.GetConnectionString());
             this.dgvItemData.AutoGenerateColumns = false;
         }
@@ -36,13 +37,6 @@ namespace Stock_inventory_system
             {
                 throw ex;
             }
-        }
-
-        private void dgvItemData_Resize(object sender, EventArgs e)
-        {
-            this.dgvItemData.Columns[0].Width = 25 * this.dgvItemData.Width / 100;
-            this.dgvItemData.Columns[1].Width = 40 * this.dgvItemData.Width / 100;
-            this.dgvItemData.Columns[2].Width = 25 * this.dgvItemData.Width / 100;
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -68,15 +62,6 @@ namespace Stock_inventory_system
             }
         }
 
-        private void FrmItemData_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (MessageBox.Show("Are you sure to save changes data ? ", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                dao.UpdateAllItem();
-            }
-
-        }
-
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
             if (this.dgvItemData.Rows.Count >= 1)
@@ -92,6 +77,26 @@ namespace Stock_inventory_system
             {
                 MessageBox.Show("Maaf, masih tidak ada data.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void FrmItemData_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure to save changes data ? ", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                dao.UpdateAllItem();
+            }
+        }
+
+        private void dgvItemData_Resize(object sender, EventArgs e)
+        {
+            this.dgvItemData.Columns[0].Width = 25 * this.dgvItemData.Width / 100;
+            this.dgvItemData.Columns[1].Width = 40 * this.dgvItemData.Width / 100;
+            this.dgvItemData.Columns[2].Width = 25 * this.dgvItemData.Width / 100;
         }
 
         private void ReloadDGVData()

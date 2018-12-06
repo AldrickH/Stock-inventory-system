@@ -45,6 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmCustData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCustData.Designer.cs">
+      <DependentUpon>FrmCustData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCustDescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCustDescription.Designer.cs">
+      <DependentUpon>FrmCustDescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmItemDescription.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +75,18 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSuppData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSuppData.Designer.cs">
+      <DependentUpon>FrmSuppData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSuppDescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSuppDescription.Designer.cs">
+      <DependentUpon>FrmSuppDescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +96,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setting.cs" />
+    <EmbeddedResource Include="FrmCustData.resx">
+      <DependentUpon>FrmCustData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCustDescription.resx">
+      <DependentUpon>FrmCustDescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmItemDescription.resx">
       <DependentUpon>FrmItemDescription.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,6 +110,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSuppData.resx">
+      <DependentUpon>FrmSuppData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSuppDescription.resx">
+      <DependentUpon>FrmSuppDescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmTransaction.resx">
       <DependentUpon>FrmTransaction.cs</DependentUpon>

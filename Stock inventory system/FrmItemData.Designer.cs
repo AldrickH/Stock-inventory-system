@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmItemData));
             this.dgvItemData = new System.Windows.Forms.DataGridView();
             this.Item_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Item_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -35,7 +36,14 @@
             this.btnAddItem = new System.Windows.Forms.Button();
             this.btnEditItem = new System.Windows.Forms.Button();
             this.btnDeleteItem = new System.Windows.Forms.Button();
+            this.gBoxClose = new System.Windows.Forms.GroupBox();
+            this.toolStripClose = new System.Windows.Forms.ToolStrip();
+            this.btnClose = new System.Windows.Forms.ToolStripButton();
+            this.gBoxAction = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemData)).BeginInit();
+            this.gBoxClose.SuspendLayout();
+            this.toolStripClose.SuspendLayout();
+            this.gBoxAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvItemData
@@ -49,13 +57,13 @@
             this.Item_ID,
             this.Item_Name,
             this.Quantity});
-            this.dgvItemData.Location = new System.Drawing.Point(12, 145);
+            this.dgvItemData.Location = new System.Drawing.Point(12, 117);
             this.dgvItemData.Name = "dgvItemData";
             this.dgvItemData.ReadOnly = true;
             this.dgvItemData.RowHeadersVisible = false;
             this.dgvItemData.RowTemplate.Height = 24;
             this.dgvItemData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItemData.Size = new System.Drawing.Size(776, 293);
+            this.dgvItemData.Size = new System.Drawing.Size(776, 321);
             this.dgvItemData.TabIndex = 0;
             this.dgvItemData.Resize += new System.EventHandler(this.dgvItemData_Resize);
             // 
@@ -79,7 +87,7 @@
             // 
             // btnAddItem
             // 
-            this.btnAddItem.Location = new System.Drawing.Point(12, 12);
+            this.btnAddItem.Location = new System.Drawing.Point(6, 24);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(155, 61);
             this.btnAddItem.TabIndex = 1;
@@ -89,7 +97,7 @@
             // 
             // btnEditItem
             // 
-            this.btnEditItem.Location = new System.Drawing.Point(173, 12);
+            this.btnEditItem.Location = new System.Drawing.Point(167, 24);
             this.btnEditItem.Name = "btnEditItem";
             this.btnEditItem.Size = new System.Drawing.Size(155, 61);
             this.btnEditItem.TabIndex = 2;
@@ -99,7 +107,7 @@
             // 
             // btnDeleteItem
             // 
-            this.btnDeleteItem.Location = new System.Drawing.Point(334, 12);
+            this.btnDeleteItem.Location = new System.Drawing.Point(328, 24);
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Size = new System.Drawing.Size(155, 61);
             this.btnDeleteItem.TabIndex = 3;
@@ -107,20 +115,71 @@
             this.btnDeleteItem.UseVisualStyleBackColor = true;
             this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
             // 
+            // gBoxClose
+            // 
+            this.gBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gBoxClose.Controls.Add(this.toolStripClose);
+            this.gBoxClose.Location = new System.Drawing.Point(682, 12);
+            this.gBoxClose.Name = "gBoxClose";
+            this.gBoxClose.Size = new System.Drawing.Size(106, 99);
+            this.gBoxClose.TabIndex = 6;
+            this.gBoxClose.TabStop = false;
+            this.gBoxClose.Text = "Close";
+            // 
+            // toolStripClose
+            // 
+            this.toolStripClose.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripClose.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripClose.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripClose.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnClose});
+            this.toolStripClose.Location = new System.Drawing.Point(3, 18);
+            this.toolStripClose.Name = "toolStripClose";
+            this.toolStripClose.Size = new System.Drawing.Size(78, 63);
+            this.toolStripClose.TabIndex = 0;
+            this.toolStripClose.Text = "toolStrip1";
+            // 
+            // btnClose
+            // 
+            this.btnClose.AutoSize = false;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 60);
+            this.btnClose.Text = "Close";
+            this.btnClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // gBoxAction
+            // 
+            this.gBoxAction.Controls.Add(this.btnAddItem);
+            this.gBoxAction.Controls.Add(this.btnEditItem);
+            this.gBoxAction.Controls.Add(this.btnDeleteItem);
+            this.gBoxAction.Location = new System.Drawing.Point(12, 12);
+            this.gBoxAction.Name = "gBoxAction";
+            this.gBoxAction.Size = new System.Drawing.Size(493, 99);
+            this.gBoxAction.TabIndex = 14;
+            this.gBoxAction.TabStop = false;
+            this.gBoxAction.Text = "Action";
+            // 
             // FrmItemData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnDeleteItem);
-            this.Controls.Add(this.btnEditItem);
-            this.Controls.Add(this.btnAddItem);
+            this.Controls.Add(this.gBoxAction);
+            this.Controls.Add(this.gBoxClose);
             this.Controls.Add(this.dgvItemData);
             this.Name = "FrmItemData";
             this.Text = "FrmItemData";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmItemData_FormClosing);
             this.Load += new System.EventHandler(this.FrmItemData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemData)).EndInit();
+            this.gBoxClose.ResumeLayout(false);
+            this.gBoxClose.PerformLayout();
+            this.toolStripClose.ResumeLayout(false);
+            this.toolStripClose.PerformLayout();
+            this.gBoxAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -134,5 +193,9 @@
         private System.Windows.Forms.Button btnAddItem;
         private System.Windows.Forms.Button btnEditItem;
         private System.Windows.Forms.Button btnDeleteItem;
+        private System.Windows.Forms.GroupBox gBoxClose;
+        private System.Windows.Forms.ToolStrip toolStripClose;
+        private System.Windows.Forms.ToolStripButton btnClose;
+        private System.Windows.Forms.GroupBox gBoxAction;
     }
 }

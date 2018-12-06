@@ -13,13 +13,15 @@ namespace Stock_inventory_system
 {
     public partial class FrmItemDescription : Form
     {
-        ItemDAO dao = null;
-        bool editMode = false;
         Item itm = null;
+        ItemDAO dao = null;
+
+        bool editMode = false;
 
         public FrmItemDescription(ItemDAO _dao, bool _editMode, Item _temp = null)
         {
             InitializeComponent();
+
             dao = _dao;
             editMode = _editMode;
 
@@ -32,7 +34,7 @@ namespace Stock_inventory_system
             }
             else
             {
-                this.txtBox_ItemID.Text = dao.GetKodeBarangBerikutnya();
+                this.txtBox_ItemID.Text = dao.GetItemIDNext();
             }
         }
 
@@ -63,6 +65,19 @@ namespace Stock_inventory_system
             }
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void textAngka_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
         private Item GetTxtBoxData()
         {
             Item newItem = new Item
@@ -73,14 +88,6 @@ namespace Stock_inventory_system
             };
 
             return newItem;
-        }
-
-        private void textAngka_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsNumber(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-            {
-                e.Handled = true;
-            }
         }
     }
 }

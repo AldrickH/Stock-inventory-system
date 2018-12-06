@@ -7,14 +7,14 @@ using System.Data.SqlClient;
 
 namespace Stock_Library
 {
-    public class ItemDAO : IDisposable
+    public class SupplierDAO : IDisposable
     {
         SqlConnection _conn = null;
         SqlTransaction _trans = null;
 
-        public List<Item> listData { get; set; }
+        public List<Supplier> listData { get; set; }
 
-        public ItemDAO(string connectionString)
+        public SupplierDAO(string connectionString)
         {
             try
             {
@@ -27,26 +27,26 @@ namespace Stock_Library
             }
         }
 
-        public List<Item> GetAllItemData()
+        public List<Supplier> GetAllSupplierData()
         {
             try
             {
                 if (this.listData == null)
                 {
-                    using (SqlCommand cmd = new SqlCommand(@"select * from item order by itemID", _conn))
+                    using (SqlCommand cmd = new SqlCommand(@"select * from Supplier order by suppID", _conn))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            listData = new List<Item>();
+                            listData = new List<Supplier>();
                             if (reader.HasRows)
                             {
                                 while (reader.Read())
                                 {
-                                    listData.Add(new Item
+                                    listData.Add(new Supplier
                                     {
-                                        itemID = reader["itemID"].ToString(),
-                                        itemName = reader["itemName"].ToString(),
-                                        qty = Convert.ToInt32(reader["qty"])
+                                        suppID = reader["suppID"].ToString(),
+                                        suppName = reader["suppName"].ToString(),
+                                        suppAddress = reader["suppAddress"].ToString()
                                     });
                                 }
                             }
@@ -61,11 +61,11 @@ namespace Stock_Library
             return listData;
         }
 
-        public void AddNewItem(Item _item)
+        public void AddNewSupplier(Supplier _supp)
         {
             try
             {
-                listData.Add(_item);
+                listData.Add(_supp);
             }
             catch (Exception ex)
             {
@@ -73,17 +73,17 @@ namespace Stock_Library
             }
         }
 
-        public void EditItem(Item _item_NEW, Item _item_OLD)
+        public void EditSupplier(Supplier _supp_NEW, Supplier _supp_OLD)
         {
             try
             {
-                foreach (Item itm in listData)
+                foreach (Supplier supp in listData)
                 {
-                    if (itm.itemID.Equals(_item_OLD.itemID))
+                    if (supp.suppID.Equals(_supp_OLD.suppID))
                     {
-                        itm.itemID = _item_NEW.itemID;
-                        itm.itemName = _item_NEW.itemName;
-                        itm.qty = _item_NEW.qty;
+                        supp.suppID = _supp_NEW.suppID;
+                        supp.suppName = _supp_NEW.suppName;
+                        supp.suppAddress = _supp_NEW.suppAddress;
                     }
                 }
             }
@@ -93,23 +93,23 @@ namespace Stock_Library
             }
         }
 
-        public void DeleteItem(string _itemID)
+        public void DeleteSupplier(string _suppID)
         {
             try
             {
-                foreach (Item itm in listData)
+                foreach (Supplier supp in listData)
                 {
-                    if (itm.itemID.Equals(_itemID))
+                    if (supp.suppID.Equals(_suppID))
                     {
-                        listData.Remove(itm);
+                        listData.Remove(supp);
                         break;
                     }
                 }
 
-                using (SqlCommand cmd = new SqlCommand(@"delete Item where itemID = @itemID", _conn))
+                using (SqlCommand cmd = new SqlCommand(@"delete Supplier where suppID = @suppID", _conn))
                 {
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@itemID", _itemID);
+                    cmd.Parameters.AddWithValue("@suppID", _suppID);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -119,33 +119,33 @@ namespace Stock_Library
             }
         }
 
-        public void UpdateAllItem()
+        public void UpdateAllSupplier()
         {
             try
             {
                 _trans = _conn.BeginTransaction();
 
-                foreach (Item item in listData)
+                foreach (Supplier supp in listData)
                 {
-                    if (!CheckItemByID(item.itemID))
+                    if (!CheckSupplierByID(supp.suppID))
                     {
-                        using (SqlCommand cmd = new SqlCommand(@"insert into item values (@itemID, @itemName, @qty)", _conn, _trans))
+                        using (SqlCommand cmd = new SqlCommand(@"insert into Supplier values (@suppID, @suppName, @suppAddress)", _conn, _trans))
                         {
                             cmd.Parameters.Clear();
-                            cmd.Parameters.AddWithValue("@itemID", item.itemID);
-                            cmd.Parameters.AddWithValue("@itemName", item.itemName);
-                            cmd.Parameters.AddWithValue("@qty", item.qty);
+                            cmd.Parameters.AddWithValue("@suppID", supp.suppID);
+                            cmd.Parameters.AddWithValue("@suppName", supp.suppName);
+                            cmd.Parameters.AddWithValue("@suppAddress", supp.suppAddress);
                             cmd.ExecuteNonQuery();
                         }
                     }
                     else
                     {
-                        using (SqlCommand cmd = new SqlCommand(@"update item set itemName = @itemName, qty = @qty where itemID = @itemID", _conn, _trans))
+                        using (SqlCommand cmd = new SqlCommand(@"update Supplier set suppName = @suppName, suppAddress = @suppAddress where suppID = @suppID", _conn, _trans))
                         {
                             cmd.Parameters.Clear();
-                            cmd.Parameters.AddWithValue("@itemID", item.itemID);
-                            cmd.Parameters.AddWithValue("@itemName", item.itemName);
-                            cmd.Parameters.AddWithValue("@qty", item.qty);
+                            cmd.Parameters.AddWithValue("@suppID", supp.suppID);
+                            cmd.Parameters.AddWithValue("@suppName", supp.suppName);
+                            cmd.Parameters.AddWithValue("@suppAddress", supp.suppAddress);
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -163,25 +163,7 @@ namespace Stock_Library
             }
         }
 
-        public void UpdateQuantity(string _itemID, int qtyAfter)
-        {
-            try
-            {
-                foreach (Item itm in listData)
-                {
-                    if (itm.itemID.Equals(_itemID))
-                    {
-                        itm.qty = qtyAfter;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public string GetItemIDNext()
+        public string GetSuppIDNext()
         {
             string result = "";
             try
@@ -189,11 +171,11 @@ namespace Stock_Library
                 if (listData.Count > 0)
                 {
                     var res = this.listData.Last();
-                    result = "BRG" + (Convert.ToInt32(res.itemID.Substring(3, 4)) + 1).ToString("0000");
+                    result = "SUP" + (Convert.ToInt32(res.suppID.Substring(3, 4)) + 1).ToString("0000");
                 }
                 else
                 {
-                    result = "BRG0001";
+                    result = "SUP0001";
                 }
             }
             catch (Exception ex)
@@ -203,15 +185,15 @@ namespace Stock_Library
             return result;
         }
 
-        public bool CheckItemByID(string _itemID)
-        {
+        public bool CheckSupplierByID(string _suppID)
+        { 
             bool result = false;
             try
             {
-                using (SqlCommand cmd = new SqlCommand(@"select * from item where itemID = @itemID", _conn, _trans))
+                using (SqlCommand cmd = new SqlCommand(@"select * from Supplier where suppID = @suppID", _conn, _trans))
                 {
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@itemID", _itemID);
+                    cmd.Parameters.AddWithValue("@suppID", _suppID);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -232,16 +214,16 @@ namespace Stock_Library
             return result;
         }
 
-        public Item GetItemByID(string _itemID)
+        public Supplier GetSupplierByID(string _suppID)
         {
-            Item result = null;
+            Supplier result = null;
             try
             {
-                foreach (Item itm in listData)
+                foreach (Supplier supp in listData)
                 {
-                    if (itm.itemID.Equals(_itemID))
+                    if (supp.suppID.Equals(_suppID))
                     {
-                        result = itm;
+                        result = supp;
                         break;
                     }
                 }

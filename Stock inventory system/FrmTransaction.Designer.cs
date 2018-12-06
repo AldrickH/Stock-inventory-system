@@ -32,10 +32,10 @@
             this.txtBox_TransID = new System.Windows.Forms.TextBox();
             this.lbl_TransDate = new System.Windows.Forms.Label();
             this.dtp_TransDate = new System.Windows.Forms.DateTimePicker();
-            this.lbl_SuppID = new System.Windows.Forms.Label();
-            this.lbl_SuppName = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.lbl_SuppNameGenerate = new System.Windows.Forms.Label();
+            this.lbl_ID = new System.Windows.Forms.Label();
+            this.lbl_Name = new System.Windows.Forms.Label();
+            this.cBoxID = new System.Windows.Forms.ComboBox();
+            this.lbl_GenerateName = new System.Windows.Forms.Label();
             this.dgvItemData = new System.Windows.Forms.DataGridView();
             this.Item_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Item_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -90,41 +90,42 @@
             this.dtp_TransDate.Size = new System.Drawing.Size(142, 22);
             this.dtp_TransDate.TabIndex = 3;
             // 
-            // lbl_SuppID
+            // lbl_ID
             // 
-            this.lbl_SuppID.AutoSize = true;
-            this.lbl_SuppID.Location = new System.Drawing.Point(357, 60);
-            this.lbl_SuppID.Name = "lbl_SuppID";
-            this.lbl_SuppID.Size = new System.Drawing.Size(77, 17);
-            this.lbl_SuppID.TabIndex = 4;
-            this.lbl_SuppID.Text = "Supplier ID";
+            this.lbl_ID.AutoSize = true;
+            this.lbl_ID.Location = new System.Drawing.Point(357, 60);
+            this.lbl_ID.Name = "lbl_ID";
+            this.lbl_ID.Size = new System.Drawing.Size(51, 17);
+            this.lbl_ID.TabIndex = 4;
+            this.lbl_ID.Text = "{ ID ? }";
             // 
-            // lbl_SuppName
+            // lbl_Name
             // 
-            this.lbl_SuppName.AutoSize = true;
-            this.lbl_SuppName.Location = new System.Drawing.Point(357, 104);
-            this.lbl_SuppName.Name = "lbl_SuppName";
-            this.lbl_SuppName.Size = new System.Drawing.Size(101, 17);
-            this.lbl_SuppName.TabIndex = 5;
-            this.lbl_SuppName.Text = "Supplier Name";
+            this.lbl_Name.AutoSize = true;
+            this.lbl_Name.Location = new System.Drawing.Point(357, 104);
+            this.lbl_Name.Name = "lbl_Name";
+            this.lbl_Name.Size = new System.Drawing.Size(75, 17);
+            this.lbl_Name.TabIndex = 5;
+            this.lbl_Name.Text = "{ Name ? }";
             // 
-            // comboBox1
+            // cBoxID
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(482, 57);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 6;
+            this.cBoxID.FormattingEnabled = true;
+            this.cBoxID.Location = new System.Drawing.Point(482, 57);
+            this.cBoxID.Name = "cBoxID";
+            this.cBoxID.Size = new System.Drawing.Size(121, 24);
+            this.cBoxID.TabIndex = 6;
+            this.cBoxID.SelectedValueChanged += new System.EventHandler(this.cBoxID_SelectedValueChanged);
             // 
-            // lbl_SuppNameGenerate
+            // lbl_GenerateName
             // 
-            this.lbl_SuppNameGenerate.AutoSize = true;
-            this.lbl_SuppNameGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_SuppNameGenerate.Location = new System.Drawing.Point(479, 104);
-            this.lbl_SuppNameGenerate.Name = "lbl_SuppNameGenerate";
-            this.lbl_SuppNameGenerate.Size = new System.Drawing.Size(71, 17);
-            this.lbl_SuppNameGenerate.TabIndex = 7;
-            this.lbl_SuppNameGenerate.Text = "{ Name }";
+            this.lbl_GenerateName.AutoSize = true;
+            this.lbl_GenerateName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_GenerateName.Location = new System.Drawing.Point(479, 104);
+            this.lbl_GenerateName.Name = "lbl_GenerateName";
+            this.lbl_GenerateName.Size = new System.Drawing.Size(71, 17);
+            this.lbl_GenerateName.TabIndex = 7;
+            this.lbl_GenerateName.Text = "{ Name }";
             // 
             // dgvItemData
             // 
@@ -196,7 +197,7 @@
             this.dgvTransaction.RowHeadersVisible = false;
             this.dgvTransaction.RowTemplate.Height = 24;
             this.dgvTransaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvTransaction.Size = new System.Drawing.Size(612, 230);
+            this.dgvTransaction.Size = new System.Drawing.Size(673, 230);
             this.dgvTransaction.TabIndex = 10;
             this.dgvTransaction.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransaction_CellEndEdit);
             this.dgvTransaction.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransaction_CellValueChanged);
@@ -234,7 +235,7 @@
             // lbl_QuantityTotal
             // 
             this.lbl_QuantityTotal.AutoSize = true;
-            this.lbl_QuantityTotal.Location = new System.Drawing.Point(722, 436);
+            this.lbl_QuantityTotal.Location = new System.Drawing.Point(783, 436);
             this.lbl_QuantityTotal.Name = "lbl_QuantityTotal";
             this.lbl_QuantityTotal.Size = new System.Drawing.Size(58, 17);
             this.lbl_QuantityTotal.TabIndex = 12;
@@ -243,25 +244,25 @@
             // lbl_Total
             // 
             this.lbl_Total.AutoSize = true;
-            this.lbl_Total.Location = new System.Drawing.Point(636, 436);
+            this.lbl_Total.Location = new System.Drawing.Point(697, 436);
             this.lbl_Total.Name = "lbl_Total";
-            this.lbl_Total.Size = new System.Drawing.Size(65, 17);
+            this.lbl_Total.Size = new System.Drawing.Size(40, 17);
             this.lbl_Total.TabIndex = 13;
-            this.lbl_Total.Text = "Total IN :";
+            this.lbl_Total.Text = "Total";
             // 
             // lbl_Company
             // 
             this.lbl_Company.AutoSize = true;
-            this.lbl_Company.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Company.Location = new System.Drawing.Point(386, 0);
+            this.lbl_Company.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Company.Location = new System.Drawing.Point(393, 9);
             this.lbl_Company.Name = "lbl_Company";
-            this.lbl_Company.Size = new System.Drawing.Size(118, 29);
+            this.lbl_Company.Size = new System.Drawing.Size(127, 29);
             this.lbl_Company.TabIndex = 14;
             this.lbl_Company.Text = "PT. 17TI1";
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(665, 473);
+            this.btn_Save.Location = new System.Drawing.Point(726, 473);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(115, 41);
             this.btn_Save.TabIndex = 15;
@@ -271,7 +272,7 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(786, 472);
+            this.btn_Cancel.Location = new System.Drawing.Point(847, 472);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(115, 41);
             this.btn_Cancel.TabIndex = 16;
@@ -283,7 +284,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 525);
+            this.ClientSize = new System.Drawing.Size(974, 525);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.lbl_Company);
@@ -293,10 +294,10 @@
             this.Controls.Add(this.dgvTransaction);
             this.Controls.Add(this.lbl_ItemData);
             this.Controls.Add(this.dgvItemData);
-            this.Controls.Add(this.lbl_SuppNameGenerate);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.lbl_SuppName);
-            this.Controls.Add(this.lbl_SuppID);
+            this.Controls.Add(this.lbl_GenerateName);
+            this.Controls.Add(this.cBoxID);
+            this.Controls.Add(this.lbl_Name);
+            this.Controls.Add(this.lbl_ID);
             this.Controls.Add(this.dtp_TransDate);
             this.Controls.Add(this.lbl_TransDate);
             this.Controls.Add(this.txtBox_TransID);
@@ -317,10 +318,10 @@
         private System.Windows.Forms.TextBox txtBox_TransID;
         private System.Windows.Forms.Label lbl_TransDate;
         private System.Windows.Forms.DateTimePicker dtp_TransDate;
-        private System.Windows.Forms.Label lbl_SuppID;
-        private System.Windows.Forms.Label lbl_SuppName;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label lbl_SuppNameGenerate;
+        private System.Windows.Forms.Label lbl_ID;
+        private System.Windows.Forms.Label lbl_Name;
+        private System.Windows.Forms.ComboBox cBoxID;
+        private System.Windows.Forms.Label lbl_GenerateName;
         private System.Windows.Forms.DataGridView dgvItemData;
         private System.Windows.Forms.Label lbl_ItemData;
         private System.Windows.Forms.Label lbl_TransactionGrid;

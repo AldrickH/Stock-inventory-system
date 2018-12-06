@@ -53,7 +53,7 @@
             this.txtBox_ItemID.Enabled = false;
             this.txtBox_ItemID.Location = new System.Drawing.Point(262, 86);
             this.txtBox_ItemID.Name = "txtBox_ItemID";
-            this.txtBox_ItemID.Size = new System.Drawing.Size(169, 22);
+            this.txtBox_ItemID.Size = new System.Drawing.Size(97, 22);
             this.txtBox_ItemID.TabIndex = 1;
             // 
             // txtBox_ItemName
@@ -116,6 +116,7 @@
             this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // FrmItemDescription
             // 
