@@ -71,7 +71,7 @@
             this.txtBox_TransID.Location = new System.Drawing.Point(186, 57);
             this.txtBox_TransID.Name = "txtBox_TransID";
             this.txtBox_TransID.ReadOnly = true;
-            this.txtBox_TransID.Size = new System.Drawing.Size(142, 22);
+            this.txtBox_TransID.Size = new System.Drawing.Size(171, 22);
             this.txtBox_TransID.TabIndex = 1;
             // 
             // lbl_TransDate
@@ -87,13 +87,13 @@
             // 
             this.dtp_TransDate.Location = new System.Drawing.Point(186, 99);
             this.dtp_TransDate.Name = "dtp_TransDate";
-            this.dtp_TransDate.Size = new System.Drawing.Size(142, 22);
+            this.dtp_TransDate.Size = new System.Drawing.Size(171, 22);
             this.dtp_TransDate.TabIndex = 3;
             // 
             // lbl_ID
             // 
             this.lbl_ID.AutoSize = true;
-            this.lbl_ID.Location = new System.Drawing.Point(357, 60);
+            this.lbl_ID.Location = new System.Drawing.Point(386, 60);
             this.lbl_ID.Name = "lbl_ID";
             this.lbl_ID.Size = new System.Drawing.Size(51, 17);
             this.lbl_ID.TabIndex = 4;
@@ -102,7 +102,7 @@
             // lbl_Name
             // 
             this.lbl_Name.AutoSize = true;
-            this.lbl_Name.Location = new System.Drawing.Point(357, 104);
+            this.lbl_Name.Location = new System.Drawing.Point(386, 104);
             this.lbl_Name.Name = "lbl_Name";
             this.lbl_Name.Size = new System.Drawing.Size(75, 17);
             this.lbl_Name.TabIndex = 5;
@@ -111,17 +111,16 @@
             // cBoxID
             // 
             this.cBoxID.FormattingEnabled = true;
-            this.cBoxID.Location = new System.Drawing.Point(482, 57);
+            this.cBoxID.Location = new System.Drawing.Point(511, 57);
             this.cBoxID.Name = "cBoxID";
             this.cBoxID.Size = new System.Drawing.Size(121, 24);
             this.cBoxID.TabIndex = 6;
-            this.cBoxID.SelectedValueChanged += new System.EventHandler(this.cBoxID_SelectedValueChanged);
             // 
             // lbl_GenerateName
             // 
             this.lbl_GenerateName.AutoSize = true;
             this.lbl_GenerateName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_GenerateName.Location = new System.Drawing.Point(479, 104);
+            this.lbl_GenerateName.Location = new System.Drawing.Point(508, 104);
             this.lbl_GenerateName.Name = "lbl_GenerateName";
             this.lbl_GenerateName.Size = new System.Drawing.Size(71, 17);
             this.lbl_GenerateName.TabIndex = 7;
@@ -133,6 +132,8 @@
             this.dgvItemData.AllowUserToDeleteRows = false;
             this.dgvItemData.AllowUserToResizeColumns = false;
             this.dgvItemData.AllowUserToResizeRows = false;
+            this.dgvItemData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvItemData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItemData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Item_ID,
@@ -185,6 +186,9 @@
             this.dgvTransaction.AllowUserToDeleteRows = false;
             this.dgvTransaction.AllowUserToResizeColumns = false;
             this.dgvTransaction.AllowUserToResizeRows = false;
+            this.dgvTransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTransaction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTransaction.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Trans_ItemID,
@@ -202,6 +206,7 @@
             this.dgvTransaction.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransaction_CellEndEdit);
             this.dgvTransaction.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransaction_CellValueChanged);
             this.dgvTransaction.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvTransaction_EditingControlShowing);
+            this.dgvTransaction.Resize += new System.EventHandler(this.dgvTransaction_Resize);
             // 
             // Trans_ItemID
             // 
@@ -234,15 +239,17 @@
             // 
             // lbl_QuantityTotal
             // 
+            this.lbl_QuantityTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_QuantityTotal.AutoSize = true;
             this.lbl_QuantityTotal.Location = new System.Drawing.Point(783, 436);
             this.lbl_QuantityTotal.Name = "lbl_QuantityTotal";
-            this.lbl_QuantityTotal.Size = new System.Drawing.Size(58, 17);
+            this.lbl_QuantityTotal.Size = new System.Drawing.Size(42, 17);
             this.lbl_QuantityTotal.TabIndex = 12;
-            this.lbl_QuantityTotal.Text = "{ Total }";
+            this.lbl_QuantityTotal.Text = "0 pcs";
             // 
             // lbl_Total
             // 
+            this.lbl_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_Total.AutoSize = true;
             this.lbl_Total.Location = new System.Drawing.Point(697, 436);
             this.lbl_Total.Name = "lbl_Total";
@@ -262,6 +269,7 @@
             // 
             // btn_Save
             // 
+            this.btn_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Save.Location = new System.Drawing.Point(726, 473);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(115, 41);
@@ -272,6 +280,7 @@
             // 
             // btn_Cancel
             // 
+            this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Cancel.Location = new System.Drawing.Point(847, 472);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(115, 41);
@@ -303,6 +312,7 @@
             this.Controls.Add(this.txtBox_TransID);
             this.Controls.Add(this.lbl_TransID);
             this.Name = "FrmTransaction";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmTransaction";
             this.Load += new System.EventHandler(this.FrmTransaction_IN_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemData)).EndInit();

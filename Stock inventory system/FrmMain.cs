@@ -51,5 +51,23 @@ namespace Stock_inventory_system
         {
             Application.Exit();
         }
+
+        private void btnReport_IN_Click(object sender, EventArgs e)
+        {
+            FrmReportIN frm = new FrmReportIN();
+            frm.ShowDialog();
+        }
+
+        private void btnReport_OUT_Click(object sender, EventArgs e)
+        {
+            FrmReportOUT frm = new FrmReportOUT();
+            frm.ShowDialog();
+        }
+
+        private void btnReport_Stock_Click(object sender, EventArgs e)
+        {
+            FrmReportStock frm = new FrmReportStock();
+            frm.ShowDialog();
+        }
     }
 }

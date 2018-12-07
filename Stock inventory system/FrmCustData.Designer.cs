@@ -52,7 +52,7 @@
             this.btnDeleteCust.Name = "btnDeleteCust";
             this.btnDeleteCust.Size = new System.Drawing.Size(155, 61);
             this.btnDeleteCust.TabIndex = 11;
-            this.btnDeleteCust.Text = "Delete Supplier";
+            this.btnDeleteCust.Text = "Delete Customer";
             this.btnDeleteCust.UseVisualStyleBackColor = true;
             this.btnDeleteCust.Click += new System.EventHandler(this.btnDeleteCust_Click);
             // 
@@ -82,6 +82,9 @@
             this.dgvCustData.AllowUserToDeleteRows = false;
             this.dgvCustData.AllowUserToResizeColumns = false;
             this.dgvCustData.AllowUserToResizeRows = false;
+            this.dgvCustData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCustData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Customer_ID,
@@ -95,6 +98,7 @@
             this.dgvCustData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCustData.Size = new System.Drawing.Size(776, 321);
             this.dgvCustData.TabIndex = 8;
+            this.dgvCustData.Resize += new System.EventHandler(this.dgvCustData_Resize);
             // 
             // Customer_ID
             // 
@@ -172,6 +176,7 @@
             this.Controls.Add(this.gBoxClose);
             this.Controls.Add(this.dgvCustData);
             this.Name = "FrmCustData";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmCustData";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCustData_FormClosing);
             this.Load += new System.EventHandler(this.FrmCustData_Load);

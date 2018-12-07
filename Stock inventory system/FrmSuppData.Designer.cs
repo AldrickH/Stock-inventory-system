@@ -95,6 +95,7 @@
             this.dgvSuppData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSuppData.Size = new System.Drawing.Size(776, 321);
             this.dgvSuppData.TabIndex = 4;
+            this.dgvSuppData.Resize += new System.EventHandler(this.dgvSuppData_Resize);
             // 
             // Supplier_ID
             // 
@@ -172,6 +173,7 @@
             this.Controls.Add(this.gBoxClose);
             this.Controls.Add(this.dgvSuppData);
             this.Name = "FrmSuppData";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmSuppData";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSuppData_FormClosing);
             this.Load += new System.EventHandler(this.FrmSuppData_Load);

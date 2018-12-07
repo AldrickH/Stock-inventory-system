@@ -61,7 +61,7 @@
             // 
             this.gBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gBoxClose.Controls.Add(this.toolStripClose);
-            this.gBoxClose.Location = new System.Drawing.Point(1112, 72);
+            this.gBoxClose.Location = new System.Drawing.Point(954, 72);
             this.gBoxClose.Name = "gBoxClose";
             this.gBoxClose.Size = new System.Drawing.Size(106, 99);
             this.gBoxClose.TabIndex = 5;
@@ -113,7 +113,7 @@
             this.btnReport_Stock});
             this.toolStripReport.Location = new System.Drawing.Point(3, 18);
             this.toolStripReport.Name = "toolStripReport";
-            this.toolStripReport.Size = new System.Drawing.Size(238, 63);
+            this.toolStripReport.Size = new System.Drawing.Size(277, 63);
             this.toolStripReport.TabIndex = 0;
             this.toolStripReport.Text = "toolStrip1";
             // 
@@ -127,6 +127,7 @@
             this.btnReport_IN.Size = new System.Drawing.Size(75, 60);
             this.btnReport_IN.Text = "IN";
             this.btnReport_IN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnReport_IN.Click += new System.EventHandler(this.btnReport_IN_Click);
             // 
             // btnReport_OUT
             // 
@@ -138,6 +139,7 @@
             this.btnReport_OUT.Size = new System.Drawing.Size(75, 60);
             this.btnReport_OUT.Text = "OUT";
             this.btnReport_OUT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnReport_OUT.Click += new System.EventHandler(this.btnReport_OUT_Click);
             // 
             // btnReport_Stock
             // 
@@ -148,6 +150,7 @@
             this.btnReport_Stock.Size = new System.Drawing.Size(75, 60);
             this.btnReport_Stock.Text = "Stock";
             this.btnReport_Stock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnReport_Stock.Click += new System.EventHandler(this.btnReport_Stock_Click);
             // 
             // gBoxData
             // 
@@ -270,13 +273,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1230, 491);
+            this.ClientSize = new System.Drawing.Size(1072, 491);
             this.Controls.Add(this.lbl_header);
             this.Controls.Add(this.gBoxClose);
             this.Controls.Add(this.gBoxReport);
             this.Controls.Add(this.gBoxData);
             this.Controls.Add(this.gBoxTransaction);
             this.Name = "FrmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmMain";
             this.gBoxClose.ResumeLayout(false);
             this.gBoxClose.PerformLayout();

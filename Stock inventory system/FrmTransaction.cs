@@ -45,11 +45,12 @@ namespace Stock_inventory_system
                 else
                 {
                     this.cBoxID.DataSource = _suppDAO.GetAllSupplierData();
-                    this.cBoxID.ValueMember = nameof(Supplier.suppID);
+                    this.cBoxID.DisplayMember = nameof(Supplier.suppID);
                 }
 
                 this.cBoxID.Text = "";
                 this.lbl_GenerateName.Text = "";
+                this.cBoxID.SelectedValueChanged += new EventHandler(cBoxID_SelectedValueChanged);
 
                 _transDAO.listTrans = _transDAO.GetAllTransactionData(_itemOUT);
                 this.txtBox_TransID.Text = _transDAO.GetTransactionIDNext(_itemOUT);
@@ -209,6 +210,15 @@ namespace Stock_inventory_system
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvTransaction_Resize(object sender, EventArgs e)
+        {
+            this.dgvTransaction.Columns[0].Width = 20 * this.dgvTransaction.Width / 100;
+            this.dgvTransaction.Columns[1].Width = 30 * this.dgvTransaction.Width / 100;
+            this.dgvTransaction.Columns[2].Width = 15 * this.dgvTransaction.Width / 100;
+            this.dgvTransaction.Columns[3].Width = 15 * this.dgvTransaction.Width / 100;
+            this.dgvTransaction.Columns[4].Width = 19 * this.dgvTransaction.Width / 100;
         }
 
         private void dgvTransaction_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

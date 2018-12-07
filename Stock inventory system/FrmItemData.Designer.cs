@@ -171,6 +171,7 @@
             this.Controls.Add(this.gBoxClose);
             this.Controls.Add(this.dgvItemData);
             this.Name = "FrmItemData";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmItemData";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmItemData_FormClosing);
             this.Load += new System.EventHandler(this.FrmItemData_Load);

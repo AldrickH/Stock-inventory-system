@@ -133,6 +133,7 @@
             this.Controls.Add(this.txtBox_ItemID);
             this.Controls.Add(this.lbl_ItemID);
             this.Name = "FrmItemDescription";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Item Description";
             this.ResumeLayout(false);
             this.PerformLayout();

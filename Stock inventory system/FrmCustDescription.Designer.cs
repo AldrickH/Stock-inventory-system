@@ -135,6 +135,7 @@
             this.Controls.Add(this.txtBox_CustID);
             this.Controls.Add(this.lbl_CustID);
             this.Name = "FrmCustDescription";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmCustDescription";
             this.ResumeLayout(false);
             this.PerformLayout();

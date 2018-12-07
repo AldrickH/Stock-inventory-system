@@ -92,6 +92,13 @@ namespace Stock_inventory_system
             }
         }
 
+        private void dgvCustData_Resize(object sender, EventArgs e)
+        {
+            this.dgvCustData.Columns[0].Width = 20 * this.dgvCustData.Width / 100;
+            this.dgvCustData.Columns[1].Width = 30 * this.dgvCustData.Width / 100;
+            this.dgvCustData.Columns[2].Width = 48 * this.dgvCustData.Width / 100;
+        }
+
         private void ReloadDGVData()
         {
             this.dgvCustData.DataSource = null;

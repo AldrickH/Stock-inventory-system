@@ -135,6 +135,7 @@
             this.Controls.Add(this.txtBox_suppID);
             this.Controls.Add(this.lbl_SuppID);
             this.Name = "FrmSuppDescription";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmSuppDescription";
             this.ResumeLayout(false);
             this.PerformLayout();
