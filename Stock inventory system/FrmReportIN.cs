@@ -55,6 +55,7 @@ namespace Stock_inventory_system
                     row.transactionDate = trans.transactionDate;
                     row.suppID = trans.suppData.suppID;
                     row.suppName = trans.suppData.suppName;
+                    row.suppAddress = trans.suppData.suppAddress;
                     row.itemID = trans.itemData.itemID;
                     row.itemName = trans.itemData.itemName;
                     row.qtyTrans_IN = trans.qtyTrans_IN.ToString();
@@ -81,6 +82,7 @@ namespace Stock_inventory_system
                     row.transactionDate = trans.transactionDate;
                     row.suppID = trans.suppData.suppID;
                     row.suppName = trans.suppData.suppName;
+                    row.suppAddress = trans.suppData.suppAddress;
                     row.itemID = trans.itemData.itemID;
                     row.itemName = trans.itemData.itemName;
                     row.qtyTrans_IN = trans.qtyTrans_IN.ToString();

@@ -113,7 +113,7 @@
             this.btnReport_Stock});
             this.toolStripReport.Location = new System.Drawing.Point(3, 18);
             this.toolStripReport.Name = "toolStripReport";
-            this.toolStripReport.Size = new System.Drawing.Size(277, 63);
+            this.toolStripReport.Size = new System.Drawing.Size(238, 63);
             this.toolStripReport.TabIndex = 0;
             this.toolStripReport.Text = "toolStrip1";
             // 
@@ -263,7 +263,7 @@
             // 
             this.lbl_header.AutoSize = true;
             this.lbl_header.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_header.Location = new System.Drawing.Point(364, 18);
+            this.lbl_header.Location = new System.Drawing.Point(281, 18);
             this.lbl_header.Name = "lbl_header";
             this.lbl_header.Size = new System.Drawing.Size(508, 36);
             this.lbl_header.TabIndex = 8;
